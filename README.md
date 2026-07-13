@@ -1,4 +1,4 @@
-﻿# SILC-TSE
+# SILC-TSE
 
 ## Lightweight Causal Target Speaker Extraction via Staged Condition Injection and Learnable Frequency Compression
 
@@ -66,6 +66,8 @@ python inference.py --mixture examples/showcase_01/mixture.wav --reference examp
 
 The output directory is created automatically if it does not already exist.
 
+Input audio is converted to mono and resampled to 8 kHz. Audio shorter than 4 seconds is zero-padded, while audio longer than 4 seconds is truncated to the first 4 seconds.
+
 ## Demo Audio Files
 
 Each showcase directory contains the following files:
@@ -92,7 +94,9 @@ The three examples are curated for qualitative listening and are not intended to
 
 ## Datasets
 
-Target speaker extraction does not have a single universally adopted ready-made public dataset. In the accompanying study, WSJ0-2mix and AISHELL-2mix were constructed from public speech corpora for model evaluation. Each TSE sample consists of a mixture speech signal, a target speech signal, and a reference speech signal. The reference and target speech signals belong to the same speaker but are different utterances.
+For model evaluation, two target speaker extraction datasets were constructed from the WSJ0 and AISHELL-1 speech corpora.
+
+Each sample consists of a two-speaker mixture, a clean target utterance, and a reference utterance from the same target speaker. The target and reference signals are different utterances spoken by the same speaker.
 
 ### WSJ0-2mix
 
@@ -106,9 +110,9 @@ The constructed WSJ0-2mix set contains 20,000 training mixtures, 5,000 validatio
 
 ### AISHELL-2mix
 
-AISHELL-2mix is constructed from the AISHELL Mandarin speech corpus. AISHELL contains recordings from 400 speakers from different accent regions in China. The original corpus is divided into training, validation, and test subsets containing 340, 40, and 20 speakers, respectively.
+AISHELL-2mix was constructed from the AISHELL-1 Mandarin speech corpus. AISHELL-1 contains recordings from 400 speakers from different accent regions in China. The original corpus is divided into training, validation, and test subsets containing 340, 40, and 20 speakers, respectively.
 
-Before mixture generation, AISHELL utterances shorter than 2 seconds are discarded. The mixture construction procedure follows the WSJ0-2mix setup, except that the relative energy range is expanded to -6 dB to 6 dB.
+Before mixture generation, AISHELL-1 utterances shorter than 2 seconds are discarded. The mixture construction procedure follows the WSJ0-2mix setup, except that the relative energy range is expanded to -6 dB to 6 dB.
 
 The constructed AISHELL-2mix set contains 100,000 training mixtures, 5,000 validation mixtures, and 8,000 test mixtures.
 
@@ -116,7 +120,7 @@ The constructed AISHELL-2mix set contains 100,000 training mixtures, 5,000 valid
 
 The audio examples included in this repository are three short, curated qualitative examples derived from the WSJ0-2mix test set. They are provided only for qualitative listening with the inference demo.
 
-The full WSJ0, WSJ0-2mix, AISHELL, and AISHELL-2mix datasets are not included. Dataset partitions, source file lists, data preparation scripts, mixture generation scripts, and full evaluation scripts are also not included.
+The full WSJ0, WSJ0-2mix, AISHELL-1, and AISHELL-2mix datasets are not included. Dataset partitions, source file lists, data preparation scripts, mixture generation scripts, and full evaluation scripts are also not included.
 
 The original speech data remain subject to the terms of their respective dataset licenses.
 
